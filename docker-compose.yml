@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  backup-dev:
+    image: ubuntu:20.04
+    container_name: backup_utility
+    working_dir: /home/backups/
+    volumes:
+      - ./:/home/backups/
+    stdin_open: true
+    tty: true
+    entrypoint:
+      - bash
