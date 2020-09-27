@@ -2,11 +2,13 @@ version: '3.3'
 
 services:
   backup-dev:
-    image: ubuntu:20.04
-    container_name: backup_utility
+    image: elaynelemos/backups:latest
+    container_name: backup_agent_dev
     working_dir: /home/backups/
     volumes:
       - ./:/home/backups/
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs: ['/tmp', '/run', '/run/lock']
     stdin_open: true
     tty: true
     entrypoint:
