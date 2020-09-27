@@ -1,6 +1,6 @@
-# Backup Managing Tool
+# Backup Management Tool
 
-Incremental and full backup utility with tar and rsync.
+Incremental and full backup agent made with tar and rsync.
 
 ### Thanks! (some references)
 - [@mikepapinski](https://github.com/MikePapinski)
