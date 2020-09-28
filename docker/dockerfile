@@ -1,0 +1,23 @@
+FROM jrei/systemd-ubuntu:20.04
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y apt-utils
+
+RUN apt-get install -y git \
+  curl \
+  wget \
+  ca-certificates \
+  apt-transport-https
+
+RUN apt-get install -y rsync
+
+RUN cd /tmp
+RUN git clone -b v1.2.1 https://github.com/bats-core/bats-core.git \
+ && cd bats-core \
+ && ./install.sh /usr/local \
+ && cd .. && rm -r bats-core
+
+RUN curl -o- https://gist.githubusercontent.com/elaynelemos/7794e10786282b288871f1c7c5cafc7f/raw/7e2fe425f383adc123ba3adde89d08d35c7f1812/root_install_openssh.sh | bash -s 8.3
