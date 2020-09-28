@@ -14,15 +14,20 @@ on:
       - '*.md'
 
 jobs:
-  build:
+  bats:
 
     runs-on: ubuntu-20.04
 
+    container: elaynelemos/backups:latest
+
     steps:
-    - uses: actions/checkout@main
-    - name: Starting with GitHub Actions
+    - uses: actions/checkout@v2
+    - name: Initiating pipeline
       run: echo 'Hello, world!'
-    - name: Just beginning
+    - name: Checking dependencies at container
       run: |
-        echo 'Please, work!'
+        echo 'We don't have tests yet. But here is all we need! :p'
+        bats -v
+        rsync --version
+        ssh -V
         exit 0
