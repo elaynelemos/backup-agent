@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+
+  pull_request:
+    branches:
+      - main
+    path-ignore:
+      - 'docs/**'
+      - '*.md'
+
+jobs:
+  bats:
+
+    runs-on: ubuntu-20.04
+
+    container: elaynelemos/backups:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Initiating pipeline
+      run: echo 'Hello, world!'
+    - name: Checking dependencies at container
+      run: |
+        echo "We don't have tests yet. But here is all we need! :p"
+        bats -v
+        rsync --version
+        ssh -V
+        exit 0
